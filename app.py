@@ -1,38 +1,14 @@
-from flask import Flask
-
-# print a nice greeting.
-def say_hello(username = "World"):
-    return '<p>Hello %s!</p>\n' % username
-
-# some bits of text for the page.
-header_text = '''
-    <html>\n<head> <title>EB Flask Test</title> </head>\n<body>'''
-instructions = '''
-    <p><em>Hint</em>: This is a RESTful web service! Append a username
-    to the URL (for example: <code>/Thelonious</code>) to say hello to
-    someone specific.</p>\n'''
-home_link = '<p><a href="/">Back</a></p>\n'
-footer_text = '</body>\n</html>'
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "".join((
-        header_text,
-        say_hello(),
-        instructions,
-        footer_text,
-    ))
+    return render_template("hello.html")
 
 @app.route("/<username>")
 def hello(username):
-    return "".join((
-        header_text,
-        say_hello(username),
-        home_link,
-        footer_text,
-    ))
+    return render_template("hello.html", username=username)
 
 if __name__ == "__main__":
     print('Try "flask --debug run".')
