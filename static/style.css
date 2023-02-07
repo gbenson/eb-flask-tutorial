@@ -1,0 +1,7 @@
+p:first-child {
+    background-color: indigo;
+    color: orange;
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 1em;
+}
